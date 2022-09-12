@@ -13,7 +13,14 @@ class ListsController < ApplicationController
     redirect_to '/top'
   end
 
-  def index
+  def index   #indexアクションは一覧画面ようのアクションとして定義.
+    @lists = List.all
+    # @Listはインスタンス変数
+    # allはメソッドの一種で、
+    #そのモデルがやりとりしているデータベースのテーブルに保存されている、
+    #全てのレコードをまとめて取得する。
+# 今回の場合はListからallメソッドを呼び出しているので、
+#listsテーブルに保存されている全てのデータを取得することができる。
   end
 
   def show
