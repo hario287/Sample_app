@@ -6,13 +6,15 @@ class ListsController < ApplicationController
 
   def create
     # １.&2. データを受け取り新規登録するためのインスタンス作成
-    list = List.new(list_params)
     # 3. データをデータベースに保存するためのsaveメソッド実行
-    list.save
     # 4. トップ画面へリダイレクト
-    #（「redirect_to '/top'」を削除して、以下コードに変更）
     # 詳細画面へリダイレクト
-    redirect_to list_path(list.id)
+    @list = List.new(list_params)
+    if @list.save
+      redirect_to list_path(@list.id)
+    else
+      render :new
+    end
   end
 
   def index   #indexアクションは一覧画面ようのアクションとして定義.
@@ -49,6 +51,17 @@ class ListsController < ApplicationController
     #このため、新たなビューは作成しません。
     #showアクションにリダイレクトするために、
     #引数には必ずidが必要になります.
+  end
+
+
+  def destroy
+    #ルーティングで定義したdestroyアクションの実装
+    #destroyメソッドによって、テーブルからデータが削除されます。
+    #データ削除後のリダイレクト先は、
+    #一覧画面を指す'/lists'（indexアクション）に設定しましょう。
+    list = List.find(params[:id])  # データ（レコード）を1件取得
+    list.destroy  # データ（レコード）を削除
+    redirect_to '/lists'  # 投稿一覧画面へリダイレクト
   end
 
 

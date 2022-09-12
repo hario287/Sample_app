@@ -7,6 +7,21 @@
 <!--< %= %>では、タグ内の結果がHTMLに変換されます。-->
 
 <h1>新規投稿</h1>
+ <!--バリデーションが行われても,
+ エラーになったときに画面上ではエラーの内容が表示されません。
+ エラーの内容が確認できるようにします-->
+<% if @list.errors.any? %>
+  <%= @list.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @list.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    <!--any? と組み合わせることで、エラーが発生しているかどうかを判定できます。-->
+    <!--full_messagesと組み合わせることで、エラーの内容を出力できます。
+    エラー文は配列で保存されているため、eachを使います。-->
+  </ul>
+<% end %>
+
 <!-- form_with部分 -->
 <%= form_with model: @list, url: '/lists', method: :post do |f| %>
   <h4>タイトル</h4>
