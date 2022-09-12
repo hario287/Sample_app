@@ -35,8 +35,21 @@ class ListsController < ApplicationController
   end
 
   def edit
+    @list = List.find(params[:id])
+    #今回は投稿済みのデータを編集するので、
+    #保存されているデータが必要=>findメソッド
   end
 
+  def update
+    list = List.find(params[:id])
+    list.update(list_params)
+    redirect_to list_path(list.id)
+    #updateアクションでは、データの更新後に更新結果を詳細画面に表示するために
+    #showアクションにリダイレクトさせます。
+    #このため、新たなビューは作成しません。
+    #showアクションにリダイレクトするために、
+    #引数には必ずidが必要になります.
+  end
 
 
 #他のアクション（index,show,createなど）を巻き込まないよう、

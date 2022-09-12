@@ -10,3 +10,6 @@
 app/views/lists/show.html.erbを開きましょう。-->
 <!--「https://...amazonaws.com/lists/1」
 で確認してみる。「lists/2」-->
+
+<%= link_to "編集", edit_list_path(@list.id) %>
+<!--編集画面へ遷移するリンク-->
