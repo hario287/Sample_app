@@ -11,5 +11,12 @@ app/views/lists/show.html.erbを開きましょう。-->
 <!--「https://...amazonaws.com/lists/1」
 で確認してみる。「lists/2」-->
 
+<h2>画像</h2>
+<% if @list.image.attached? %>
+  <%= image_tag @list.image, size: "300x300" %>
+<% else %>
+  <%= image_tag 'no_image_dmm', size: "300x300" %>
+<% end %>
+
 <%= link_to "編集", edit_list_path(@list.id) %>
 <!--編集画面へ遷移するリンク-->

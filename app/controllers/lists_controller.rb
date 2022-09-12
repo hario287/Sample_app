@@ -59,7 +59,7 @@ class ListsController < ApplicationController
 private
 # ストロングパラメータ
   def list_params   #「モデル名_params」
-    params.require(:list).permit(:title, :body)
+    params.require(:list).permit(:title, :body, :image)
 #params...formから送られてくるデータはparamsの中に入っています。
 #require...送られてきたデータの中からモデル名(ここでは:list)を指定し、データを絞り込みます。
 #permit...requireで絞り込んだデータの中から、保存を許可するカラムを指定します。

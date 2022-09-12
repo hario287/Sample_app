@@ -14,9 +14,24 @@
   <!--一覧画面から詳細画面へ遷移するリンクを設定します。
   リンクを設定するには、link_toメソッドを利用-->
   <span>
-    <%= link_to list.title, list_path{list.id} %>
-    <!--< %= link_to 表示させるテキスト , リンク先URL [,オプション] %>-->
+  <%=link_to list.title, list_path(list.id) %>
+  <!--< %= link_to 表示させるテキスト , リンク先URL [,オプション] %>-->
   </span>
-    <!--list.[カラム名]と記述することで、レコードのカラムの内容を表示-->
+    <!--list.[カラム名]と記述することで、
+    レコードのカラムの内容を表示-->
+
+  <p>画像</p>
+  <% if list.image.attached? %>
+    <!--attached?は、画像が存在していればtrue、
+    存在していなければfalseを返します-->
+    <%= image_tag list.image, size: "200x200" %>
+  <% else %>
+    <%= image_tag 'no_image_dmm', size: "200x200" %>
+  <!--listに紐ついているimageをimage_tagに渡すことで
+  画像を表示することができます-->
+  <!--今回の場合では、
+  imageが存在していれば、list.imageを表示し、
+  なければ用意したno_imageを表示するとなっている-->
+  <% end %>
 
 <% end %>
