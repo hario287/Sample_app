@@ -10,7 +10,9 @@ class ListsController < ApplicationController
     # 3. データをデータベースに保存するためのsaveメソッド実行
     list.save
     # 4. トップ画面へリダイレクト
-    redirect_to '/top'
+    #（「redirect_to '/top'」を削除して、以下コードに変更）
+    # 詳細画面へリダイレクト
+    redirect_to list_path(list.id)
   end
 
   def index   #indexアクションは一覧画面ようのアクションとして定義.
@@ -24,6 +26,12 @@ class ListsController < ApplicationController
   end
 
   def show
+    @list = List.find(params[:id])
+    #「List.find(params[:id])」という記述が意味していることは、以下のようになります。
+    #/lists/1    => List.find(params[:id]) => idが1のレコードを取得
+    #/lists/3    => List.find(params[:id]) => idが3のレコードを取得
+    #/lists/hoge => List.find(params[:id]) => idがhogeのレコードを取得(普通は存在しないのでエラーになります)
+    #これによって、URL毎に取得するレコードを変えることができます。
   end
 
   def edit

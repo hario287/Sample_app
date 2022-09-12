@@ -1,2 +1,12 @@
-<h1>Lists#show</h1>
-<p>Find me in app/views/lists/show.html.erb</p>
+<h2>タイトル</h2>
+<p><%= @list.title %></p>
+
+<h2>本文</h2>
+<p><%= @list.body %></p>
+
+<!--本当にURLによって取得するレコードが
+変わっているのかどうかを確認するため、
+ビューに記述をしていきます。
+app/views/lists/show.html.erbを開きましょう。-->
+<!--「https://...amazonaws.com/lists/1」
+で確認してみる。「lists/2」-->
