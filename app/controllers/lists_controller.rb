@@ -13,7 +13,9 @@ class ListsController < ApplicationController
     if @list.save
       redirect_to list_path(@list.id)
     else
-      render :new
+      #c9# renderするビューに必要なインスタンス変数は、
+      #あらかじめ用意しなくてはならない
+      render :new #<= indexに変更する場合も？
     end
   end
 
