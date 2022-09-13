@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+get 'top' => 'homes#top'
+resources :lists
+end
+
  # get 'lists/new'
  # get 'top' => 'homes#top'
  # post 'lists' => 'lists#create'
@@ -23,6 +27,4 @@ Rails.application.routes.draw do
 
   ###上記のルーティングの記述をもっと短縮できる書き方が
   ###resourcesメソッド。ルーティングを一括して自動生成してくれる。
-  get 'top' => 'homes#top'
-  resources :lists
-  end
+
